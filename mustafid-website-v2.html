@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مستفيد | خدمات رقمية احترافية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+.hero-logo-big .hero-logo-image {
+  width: 250px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.nav-logo .logo-image {
+  height: 70px;
+  width: auto;
+  display: block;
+}
+:root {
+  --c1: #00d4ff;
+  --c2: #a855f7;
+  --c3: #ec4899;
+  --dark: #0d0820;
+  --dark2: #13102a;
+  --dark3: #1a1640;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --grad: linear-gradient(135deg, var(--c1), var(--c2), var(--c3));
+  --grad2: linear-gradient(135deg, var(--c1) 0%, var(--c2) 100%);
+  --wa: #25D366;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Cairo', sans-serif; background: var(--dark); color: var(--text); overflow-x: hidden; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--c2); border-radius: 3px; }
+.stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+.star { position: absolute; width: 2px; height: 2px; background: white; border-radius: 50%; animation: twinkle var(--dur) ease-in-out infinite; opacity: 0; }
+@keyframes twinkle { 0%, 100% { opacity: 0; } 50% { opacity: var(--op); } }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; background: rgba(13,8,32,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(168,85,247,0.15); transition: all 0.3s; }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-text { font-size: 22px; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 15px; font-weight: 600; transition: color 0.3s; position: relative; }
+.nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px; background: var(--grad2); transform: scaleX(0); transition: transform 0.3s; }
+.nav-links a:hover { color: var(--c1); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-cta { background: var(--grad2); color: white !important; padding: 8px 20px; border-radius: 50px; font-weight: 700 !important; transition: opacity 0.3s !important; }
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { opacity: 0.85; color: white !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--c1); border-radius: 2px; transition: all 0.3s; }
+.hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; position: relative; z-index: 1; }
+.hero-glow { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(168,85,247,0.2) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.3); border-radius: 50px; padding: 6px 16px; font-size: 13px; color: var(--c2); margin-bottom: 1.5rem; animation: fadeUp 0.6s ease both; }
+.hero-logo-big { font-size: 5rem; margin-bottom: 0.5rem; animation: fadeUp 0.6s 0.1s ease both; }
+.hero h1 { font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 900; line-height: 1.2; margin-bottom: 1.5rem; animation: fadeUp 0.6s 0.2s ease both; }
+.hero h1 span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero p { font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--muted); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.8; animation: fadeUp 0.6s 0.3s ease both; }
+.hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: fadeUp 0.6s 0.4s ease both; }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--grad2); color: white; padding: 14px 32px; border-radius: 50px; font-size: 16px; font-weight: 700; text-decoration: none; transition: transform 0.3s, box-shadow 0.3s; font-family: 'Cairo', sans-serif; border: none; cursor: pointer; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(168,85,247,0.4); }
+.btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--c1); padding: 13px 32px; border-radius: 50px; font-size: 16px; font-weight: 700; text-decoration: none; border: 1.5px solid var(--c1); transition: all 0.3s; font-family: 'Cairo', sans-serif; cursor: pointer; }
+.btn-secondary:hover { background: rgba(0,212,255,0.1); transform: translateY(-3px); }
+.hero-stats { display: flex; gap: 3rem; justify-content: center; margin-top: 4rem; flex-wrap: wrap; animation: fadeUp 0.6s 0.5s ease both; }
+.stat { text-align: center; }
+.stat-num { font-size: 2rem; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+section { padding: 5rem 2rem; position: relative; z-index: 1; }
+.section-header { text-align: center; margin-bottom: 3.5rem; }
+.section-tag { display: inline-block; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3); color: var(--c1); padding: 4px 14px; border-radius: 50px; font-size: 13px; font-weight: 600; margin-bottom: 1rem; }
+.section-header h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; margin-bottom: 1rem; }
+.section-header h2 span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.section-header p { color: var(--muted); font-size: 1.05rem; max-width: 550px; margin: 0 auto; line-height: 1.8; }
+.services-bg { background: var(--dark2); }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+.service-card { background: var(--dark3); border: 1px solid rgba(168,85,247,0.15); border-radius: 20px; padding: 2rem; transition: all 0.4s; position: relative; overflow: hidden; opacity: 0; transform: translateY(30px); }
+.service-card.visible { opacity: 1; transform: translateY(0); }
+.service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad2); transform: scaleX(0); transition: transform 0.4s; }
+.service-card:hover::before { transform: scaleX(1); }
+.service-card:hover { border-color: rgba(168,85,247,0.4); transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+.service-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+.service-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.8rem; color: white; }
+.service-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+.service-features { margin-top: 1.2rem; list-style: none; }
+.service-features li { font-size: 0.9rem; color: var(--muted); padding: 4px 0; display: flex; align-items: center; gap: 8px; }
+.service-features li::before { content: '✓'; color: var(--c1); font-weight: 700; }
+
+/* PORTFOLIO */
+.portfolio-tabs { display: flex; gap: 1rem; justify-content: center; margin-bottom: 2.5rem; flex-wrap: wrap; }
+.tab-btn { background: transparent; border: 1.5px solid rgba(168,85,247,0.3); color: var(--muted); padding: 8px 24px; border-radius: 50px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-family: 'Cairo', sans-serif; }
+.tab-btn.active, .tab-btn:hover { background: var(--grad2); border-color: transparent; color: white; }
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+
+/* Portfolio card as link */
+.portfolio-card {
+  background: var(--dark3);
+  border: 1px solid rgba(168,85,247,0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+.portfolio-card:hover { transform: translateY(-8px); border-color: rgba(0,212,255,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+
+/* Image wrapper */
+.portfolio-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: var(--dark2);
+}
+.portfolio-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s;
+}
+.portfolio-card:hover .portfolio-img-wrap img { transform: scale(1.05); }
+
+.portfolio-img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  position: absolute;
+  top: 0; left: 0;
+}
+
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.portfolio-card:hover .portfolio-overlay { opacity: 1; }
+.portfolio-overlay span { color: white; font-size: 15px; font-weight: 700; background: var(--grad2); padding: 8px 20px; border-radius: 50px; }
+
+.portfolio-info { padding: 1.2rem; }
+.portfolio-info h3 { font-size: 1rem; font-weight: 700; color: white; margin-bottom: 0.5rem; }
+.portfolio-info p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+.portfolio-tag { display: inline-block; background: rgba(0,212,255,0.1); color: var(--c1); padding: 3px 10px; border-radius: 50px; font-size: 11px; margin-top: 8px; }
+
+.about-bg { background: var(--dark2); }
+.about-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.about-visual { display: flex; align-items: center; justify-content: center; position: relative; }
+.about-logo-big { font-size: 10rem; line-height: 1; position: relative; z-index: 1; }
+.about-glow { position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(0,212,255,0.2) 0%, transparent 70%); pointer-events: none; }
+.about-content h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 900; margin-bottom: 1.2rem; }
+.about-content h2 span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.about-content p { color: var(--muted); line-height: 1.9; margin-bottom: 1.5rem; font-size: 1rem; }
+.about-points { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+.about-point { background: var(--dark3); border: 1px solid rgba(168,85,247,0.15); border-radius: 14px; padding: 1rem; text-align: center; }
+.about-point-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+.about-point-title { font-size: 0.95rem; font-weight: 700; color: white; }
+.about-point-desc { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+.contact-inner { max-width: 650px; margin: 0 auto; }
+.contact-form { background: var(--dark2); border: 1px solid rgba(168,85,247,0.2); border-radius: 24px; padding: 2.5rem; }
+.form-group { margin-bottom: 1.2rem; }
+.form-group label { display: block; font-size: 14px; font-weight: 600; color: var(--muted); margin-bottom: 8px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; background: var(--dark3); border: 1px solid rgba(168,85,247,0.2); border-radius: 12px; padding: 12px 16px; color: var(--text); font-size: 15px; font-family: 'Cairo', sans-serif; transition: border-color 0.3s; outline: none; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--c2); }
+.form-group select option { background: var(--dark3); }
+.form-group textarea { resize: none; min-height: 110px; }
+.form-submit { width: 100%; padding: 14px; font-size: 16px; font-weight: 700; border: none; cursor: pointer; }
+.privacy-bg { background: var(--dark2); }
+.privacy-box { max-width: 750px; margin: 0 auto; background: var(--dark3); border: 1px solid rgba(168,85,247,0.15); border-radius: 20px; padding: 2.5rem; }
+.privacy-box h3 { font-size: 1.1rem; font-weight: 700; margin: 1.2rem 0 0.6rem; color: var(--c1); }
+.privacy-box p { color: var(--muted); font-size: 0.95rem; line-height: 1.8; }
+footer { background: var(--dark); border-top: 1px solid rgba(168,85,247,0.1); padding: 3rem 2rem 1.5rem; text-align: center; position: relative; z-index: 1; }
+.footer-logo { font-size: 2rem; margin-bottom: 0.5rem; }
+.footer-brand { font-size: 1.4rem; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; }
+.footer-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+.social-links { display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem; }
+.social-link { display: inline-flex; align-items: center; gap: 8px; background: var(--dark2); border: 1px solid rgba(168,85,247,0.2); color: var(--text); padding: 10px 20px; border-radius: 50px; text-decoration: none; font-size: 14px; font-weight: 600; transition: all 0.3s; }
+.social-link:hover { background: rgba(168,85,247,0.15); border-color: var(--c2); transform: translateY(-3px); }
+.footer-copy { color: var(--muted); font-size: 0.85rem; border-top: 1px solid rgba(168,85,247,0.1); padding-top: 1.5rem; margin-top: 1rem; }
+.wa-float { position: fixed; bottom: 2rem; left: 2rem; width: 56px; height: 56px; background: var(--wa); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; text-decoration: none; z-index: 999; box-shadow: 0 8px 24px rgba(37,211,102,0.4); transition: transform 0.3s; animation: pulse 2s ease-in-out infinite; }
+.wa-float:hover { transform: scale(1.1); }
+@keyframes pulse { 0%, 100% { box-shadow: 0 8px 24px rgba(37,211,102,0.4); } 50% { box-shadow: 0 8px 40px rgba(37,211,102,0.7); } }
+.mobile-nav { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(13,8,32,0.98); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+.mobile-nav.open { display: flex; }
+.mobile-nav a { color: white; text-decoration: none; font-size: 1.5rem; font-weight: 700; }
+.mobile-nav .close-btn { position: absolute; top: 1.5rem; left: 1.5rem; background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; }
+@media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } .about-inner { grid-template-columns: 1fr; } .about-visual { display: none; } .about-points { grid-template-columns: 1fr 1fr; } .hero-stats { gap: 1.5rem; } .contact-form { padding: 1.5rem; } nav { padding: 1rem; } }
+@media (max-width: 480px) { .about-points { grid-template-columns: 1fr; } .social-links { flex-direction: column; align-items: center; } .hero-btns { flex-direction: column; align-items: center; } .portfolio-grid { grid-template-columns: 1fr; } .services-grid { grid-template-columns: 1fr; } }
+.fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <img src="logo.png" alt="مستفيد" class="logo-image">
+    <span class="logo-text">مستفيد</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">خدماتنا</a></li>
+    <li><a href="#portfolio">أعمالنا</a></li>
+    <li><a href="#about">من نحن</a></li>
+    <li><a href="#contact" class="nav-cta">اطلب الآن</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <button class="close-btn" onclick="toggleMobileNav()">✕</button>
+  <a href="#services" onclick="toggleMobileNav()">خدماتنا</a>
+  <a href="#portfolio" onclick="toggleMobileNav()">أعمالنا</a>
+  <a href="#about" onclick="toggleMobileNav()">من نحن</a>
+  <a href="#contact" onclick="toggleMobileNav()">اطلب الآن</a>
+</div>
+
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+  <div>
+    <div class="hero-badge">✦ وكالة رقمية متكاملة</div>
+    <div class="hero-logo-big">
+      <img src="logo.png" alt="مستفيد" class="hero-logo-image">
+    </div>
+    <h1>نحوّل فكرتك إلى<br><span>حضور رقمي يشتغل لك</span></h1>
+    <p>مواقع إلكترونية احترافية، جرافيك يفرق، مونتاج يوقف التمرير، وسوشيال ميديا تبني لك جمهور حقيقي</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/9647760978190?text=مرحباً، أريد الاستفسار عن خدماتكم" class="btn-primary" target="_blank">💬 اطلب الآن عبر واتساب</a>
+      <a href="#portfolio" class="btn-secondary">👁️ شوف أعمالنا</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">+20</div><div class="stat-label">مشروع منجز</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">رضا العملاء</div></div>
+      <div class="stat"><div class="stat-num">72h</div><div class="stat-label">متوسط التسليم</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="services-bg" id="services">
+  <div class="section-header fade-in">
+    <div class="section-tag">خدماتنا</div>
+    <h2>كل ما تحتاجه <span>بمكان واحد</span></h2>
+    <p>نقدم حلولاً رقمية متكاملة تساعد مشروعك على النمو والانتشار</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card" style="transition-delay:0s">
+      <span class="service-icon">💻</span>
+      <h3>تصميم المواقع الإلكترونية</h3>
+      <p>مواقع احترافية سريعة ومتجاوبة تعمل على جميع الأجهزة وتحقق نتائج حقيقية</p>
+      <ul class="service-features">
+        <li>تصميم مخصص 100٪</li>
+        <li>متجاوب مع الجوال</li>
+        <li>سرعة تحميل عالية</li>
+        <li>تسليم خلال 72 ساعة</li>
+      </ul>
+    </div>
+    <div class="service-card" style="transition-delay:0.1s">
+      <span class="service-icon">🎨</span>
+      <h3>الجرافيك ديزاين</h3>
+      <p>هويات بصرية كاملة، لوغوهات، منيوهات رقمية، وتصاميم سوشيال تفرق عن الكل</p>
+      <ul class="service-features">
+        <li>هوية بصرية كاملة</li>
+        <li>منيو رقمي احترافي</li>
+        <li>تصاميم سوشيال ميديا</li>
+        <li>ملفات قابلة للتعديل</li>
+      </ul>
+    </div>
+    <div class="service-card" style="transition-delay:0.2s">
+      <span class="service-icon">🎬</span>
+      <h3>مونتاج الفيديو</h3>
+      <p>ريلز وفيديوهات إعلانية تشد الانتباه وتحول المشاهد إلى زبون</p>
+      <ul class="service-features">
+        <li>ريلز للسوشيال ميديا</li>
+        <li>إعلانات فيديو</li>
+        <li>موشن جرافيك</li>
+        <li>جودة احترافية</li>
+      </ul>
+    </div>
+    <div class="service-card" style="transition-delay:0.3s">
+      <span class="service-icon">📱</span>
+      <h3>إدارة السوشيال ميديا</h3>
+      <p>نبني لك حضور رقمي قوي ونجذب جمهور حقيقي مهتم بمنتجاتك وخدماتك</p>
+      <ul class="service-features">
+        <li>محتوى يومي احترافي</li>
+        <li>إدارة الردود</li>
+        <li>تقارير شهرية</li>
+        <li>استراتيجية نمو</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="section-header fade-in">
+    <div class="section-tag">معرض الأعمال</div>
+    <h2>أعمالنا <span>تتكلم عنّا</span></h2>
+    <p>نماذج حقيقية من مشاريع أنجزناها لعملائنا</p>
+  </div>
+
+  <div class="portfolio-tabs">
+    <button class="tab-btn active" onclick="filterPortfolio('websites', this)">مواقع إلكترونية</button>
+    <button class="tab-btn" onclick="filterPortfolio('design', this)">جرافيك ديزاين</button>
+  </div>
+
+  <div class="portfolio-grid" id="portfolioGrid">
+
+    <!-- ======= مواقع - غير الروابط و src الصور لاحقاً ======= -->
+
+    <a class="portfolio-card" data-cat="websites"
+       href="https://mortezafazel29-ai.github.io/al-raed-services-demo/" target="_blank">
+      <div class="portfolio-img-wrap">
+        <img src="works/alrad.png" alt="الرائد للخدمات"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="portfolio-img-placeholder" style="display:none;background:linear-gradient(135deg,#1a1640,#2d1b69)">🏗️</div>
+        <div class="portfolio-overlay"><span>عرض المشروع ↗</span></div>
+      </div>
+      <div class="portfolio-info">
+        <h3>الرائد للخدمات</h3>
+        <p>موقع احترافي لشركة تنظيف عراقية مع نظام حجز وتواصل متكامل</p>
+        <span class="portfolio-tag">موقع خدمات</span>
+      </div>
+    </a>
+
+    <a class="portfolio-card" data-cat="websites"
+       href="https://mortezafazel29-ai.github.io/restaurant-demo/" target="_blank">
+      <div class="portfolio-img-wrap">
+        <img src="works/resturent.png" alt="مطعم الأفق"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="portfolio-img-placeholder" style="display:none;background:linear-gradient(135deg,#0d2137,#1a4a6b)">🍽️</div>
+        <div class="portfolio-overlay"><span>عرض المشروع ↗</span></div>
+      </div>
+      <div class="portfolio-info">
+        <h3>مطعم الأفق</h3>
+        <p>موقع أنيق لمطعم عراقي مع قائمة رقمية وخدمة طلب أونلاين</p>
+        <span class="portfolio-tag">موقع مطعم</span>
+      </div>
+    </a>
+
+    <a class="portfolio-card" data-cat="websites"
+       href="https://mortezafazel29-ai.github.io/aldar-althaqiya-demo/" target="_blank">
+      <div class="portfolio-img-wrap">
+        <img src="works/dar.png" alt="الدار الذكية"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="portfolio-img-placeholder" style="display:none;background:linear-gradient(135deg,#1a2d0d,#2d4a1a)">🏥</div>
+        <div class="portfolio-overlay"><span>عرض المشروع ↗</span></div>
+      </div>
+      <div class="portfolio-info">
+        <h3>الدار الذكية</h3>
+        <p>موقع عقارات مختارة
+بمعايير دولية</p>
+        <span class="portfolio-tag">موقع عقار</span>
+      </div>
+    </a>
+
+    <a class="portfolio-card" data-cat="websites"
+       href="https://mortezafazel29-ai.github.io/store/" target="_blank">
+      <div class="portfolio-img-wrap">
+        <img src="works/store.png" alt="متجرك "
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="portfolio-img-placeholder" style="display:none;background:linear-gradient(135deg,#2d1a0d,#4a2d1a)">🏪</div>
+        <div class="portfolio-overlay"><span>عرض المشروع ↗</span></div>
+      </div>
+      <div class="portfolio-info">
+        <h3>متجرك </h3>
+        <p>متجر إلكتروني متكامل  مع سلة تسوق ودفع إلكتروني</p>
+        <span class="portfolio-tag">متجر إلكتروني</span>
+      </div>
+    </a>
+
+    <a class="portfolio-card" data-cat="websites"
+       href="https://mortezafazel29-ai.github.io/portfolio/" target="_blank">
+      <div class="portfolio-img-wrap">
+        <img src="works/port.png" alt=" معرض اعمال"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="portfolio-img-placeholder" style="display:none;background:linear-gradient(135deg,#1a0d2d,#2d1a4a)">🏢</div>
+        <div class="portfolio-overlay"><span>عرض المشروع ↗</span></div>
+      </div>
+      <div class="portfolio-info">
+        <h3> معرض اعمال</h3>
+        <p>موقع معرض اعمال متكامل</p>
+        <span class="portfolio-tag">موقع معرض اعمال</span>
+      </div>
+    </a>
+
+    <!-- ======= جرافيك - غير src الصور ورابط href لاحقاً ======= -->
+<!---->
+    <a class="portfolio-card" data-cat="design" style="display:none"
+       href="#" target="_blank">
+      <div class="portfolio-img-wrap">
+        <img src="works/zhoor.png" alt="هوية مطعم الزهور"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="portfolio-img-placeholder" style="display:none;background:linear-gradient(135deg,#2d0d1a,#4a1a2d)">🎨</div>
+        <div class="portfolio-overlay"><span>عرض التصميم ↗</span></div>
+      </div>
+      <div class="portfolio-info">
+        <h3>هوية مطعم الزهور</h3>
+        <p>هوية بصرية كاملة شاملة لوغو وألوان وخطوط وتطبيقات</p>
+        <span class="portfolio-tag">هوية بصرية</span>
+      </div>
+    </a>
+
+    <a class="portfolio-card" data-cat="design" style="display:none"
+       href="#" target="_blank">
+      <div class="portfolio-img-wrap">
+        <img src="works/menu.png" alt="منيو رقمي"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="portfolio-img-placeholder" style="display:none;background:linear-gradient(135deg,#0d1a2d,#1a2d4a)">📋</div>
+        <div class="portfolio-overlay"><span>عرض التصميم ↗</span></div>
+      </div>
+      <div class="portfolio-info">
+        <h3>منيو رقمي للكافيه</h3>
+        <p>منيو رقمي أنيق مع QR Code للوصول السريع</p>
+        <span class="portfolio-tag">منيو رقمي</span>
+      </div>
+    </a>
+
+    <a class="portfolio-card" data-cat="design" style="display:none"
+       href="#" target="_blank">
+      <div class="portfolio-img-wrap">
+        <img src="works/revit.png" alt="تصاميم سوشيال"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="portfolio-img-placeholder" style="display:none;background:linear-gradient(135deg,#1a2d0d,#2d4a0d)">📱</div>
+        <div class="portfolio-overlay"><span>عرض التصميم ↗</span></div>
+      </div>
+      <div class="portfolio-info">
+        <h3>تصاميم سوشيال ميديا</h3>
+        <p>باقة تصاميم منتظمة لحسابات إنستاغرام وتيك توك</p>
+        <span class="portfolio-tag">سوشيال ميديا</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<section class="about-bg" id="about">
+  <div class="about-inner">
+    <div class="about-visual fade-in">
+      <div class="about-glow"></div>
+      <div class="hero-logo-big">
+        <img src="logo.png" alt="مستفيد" class="hero-logo-image">
+      </div>
+    </div>
+    <div class="about-content fade-in">
+      <div class="section-tag">من نحن</div>
+      <h2>نحن <span>مستفيد</span></h2>
+      <p>وكالة رقمية عراقية متخصصة في تقديم حلول رقمية متكاملة للأعمال والمشاريع. نؤمن أن كل مشروع يستحق حضوراً رقمياً يليق به ويحقق نتائج حقيقية.</p>
+      <p>نستخدم أحدث التقنيات لتسليم مشاريع احترافية بسرعة وكفاءة عالية. <strong>ويا مستفيد انت المستفيد</strong></p>
+      <div class="about-points">
+        <div class="about-point"><div class="about-point-icon">⚡</div><div class="about-point-title">تسليم سريع</div><div class="about-point-desc">72 ساعة في المتوسط</div></div>
+        <div class="about-point"><div class="about-point-icon">🎯</div><div class="about-point-title">جودة عالية</div><div class="about-point-desc">معايير احترافية</div></div>
+        <div class="about-point"><div class="about-point-icon">💰</div><div class="about-point-title">أسعار مناسبة</div><div class="about-point-desc">تناسب السوق العراقي</div></div>
+        <div class="about-point"><div class="about-point-icon">🤝</div><div class="about-point-title">دعم مستمر</div><div class="about-point-desc">بعد التسليم</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-header fade-in">
+    <div class="section-tag">تواصل معنا</div>
+    <h2>اطلب <span>خدمتك الآن</span></h2>
+    <p>أرسل تفاصيل مشروعك وسنتواصل معك فوراً عبر واتساب</p>
+  </div>
+  <div class="contact-inner fade-in">
+    <div class="contact-form">
+      <div class="form-group">
+        <label>الاسم الكامل *</label>
+        <input type="text" id="fname" placeholder="اكتب اسمك هنا">
+      </div>
+      <div class="form-group">
+        <label>رقم الهاتف *</label>
+        <input type="tel" id="fphone" placeholder="07XXXXXXXXX">
+      </div>
+      <div class="form-group">
+        <label>الخدمة المطلوبة *</label>
+        <select id="fservice">
+          <option value="">اختر الخدمة...</option>
+          <option value="موقع إلكتروني">موقع إلكتروني</option>
+          <option value="جرافيك ديزاين">جرافيك ديزاين</option>
+          <option value="مونتاج فيديو">مونتاج فيديو</option>
+          <option value="إدارة سوشيال ميديا">إدارة سوشيال ميديا</option>
+          <option value="منيو رقمي">منيو رقمي</option>
+          <option value="باقة متكاملة">باقة متكاملة</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>ملاحظات إضافية</label>
+        <textarea id="fnotes" placeholder="اكتب أي تفاصيل إضافية عن مشروعك..."></textarea>
+      </div>
+      <button class="btn-primary form-submit" onclick="sendToWhatsApp()">💬 أرسل الطلب عبر واتساب</button>
+    </div>
+  </div>
+</section>
+
+<section class="privacy-bg" id="privacy">
+  <div class="section-header fade-in">
+    <div class="section-tag">سياسة الخصوصية</div>
+    <h2>حماية <span>بياناتك</span></h2>
+  </div>
+  <div class="privacy-box fade-in">
+    <h3>جمع البيانات</h3>
+    <p>نجمع فقط المعلومات الضرورية لتقديم خدماتنا مثل الاسم ورقم الهاتف ونوع الخدمة المطلوبة.</p>
+    <h3>استخدام البيانات</h3>
+    <p>تُستخدم بياناتك حصراً للتواصل معك بخصوص طلبك. لا نشارك بياناتك مع أي طرف ثالث.</p>
+    <h3>حماية البيانات</h3>
+    <p>نلتزم بحماية خصوصيتك ونطبق أعلى معايير الأمان للحفاظ على بياناتك آمنة.</p>
+    <h3>حقوقك</h3>
+    <p>يحق لك طلب حذف بياناتك في أي وقت عبر التواصل معنا مباشرة.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="hero-logo-big" style="font-size:3rem">
+    <img src="logo.png" alt="مستفيد" class="hero-logo-image" style="width:120px">
+  </div>
+  <div class="footer-brand">مستفيد</div>
+  <div class="footer-desc">وكالة رقمية متكاملة | خدمات رقمية احترافية</div>
+  <div class="social-links">
+    <a href="https://wa.me/9647760978190" class="social-link" target="_blank">💬 واتساب</a>
+    <a href="https://www.instagram.com/mustafid.online/" class="social-link" target="_blank">📸 إنستاغرام</a>
+    <a href="https://tiktok.com/@mustafid.online" class="social-link" target="_blank">🎵 تيك توك</a>
+  </div>
+  <div class="footer-copy">© 2026 مستفيد | جميع الحقوق محفوظة</div>
+</footer>
+
+<a href="https://wa.me/9647760978190" class="wa-float" target="_blank">💬</a>
+
+<script>
+const starsContainer = document.getElementById('stars');
+for(let i = 0; i < 80; i++) {
+  const star = document.createElement('div');
+  star.className = 'star';
+  star.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*4}s;--op:${0.3+Math.random()*0.7};animation-delay:${Math.random()*4}s;`;
+  starsContainer.appendChild(star);
+}
+function toggleMobileNav() { document.getElementById('mobileNav').classList.toggle('open'); }
+const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
+document.querySelectorAll('.fade-in, .service-card').forEach(el => observer.observe(el));
+function filterPortfolio(cat, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.portfolio-card').forEach(card => {
+    card.style.display = card.dataset.cat === cat ? 'block' : 'none';
+  });
+}
+function sendToWhatsApp() {
+  const name = document.getElementById('fname').value.trim();
+  const phone = document.getElementById('fphone').value.trim();
+  const service = document.getElementById('fservice').value;
+  const notes = document.getElementById('fnotes').value.trim();
+  if(!name || !phone || !service) { alert('يرجى ملء الحقول المطلوبة'); return; }
+  const msg = `مرحباً مستفيد 👋\n\nالاسم: ${name}\nالهاتف: ${phone}\nالخدمة المطلوبة: ${service}${notes ? '\nملاحظات: ' + notes : ''}\n\nأريد الاستفسار عن خدماتكم`;
+  window.open(`https://wa.me/9647760978190?text=${encodeURIComponent(msg)}`, '_blank');
+}
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  nav.style.background = window.scrollY > 50 ? 'rgba(13,8,32,0.95)' : 'rgba(13,8,32,0.8)';
+});
+</script>
+</body>
+</html>
